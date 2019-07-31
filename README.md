@@ -14,10 +14,12 @@ This repository only contains a summary of existing information found.
 I added an additional video on vimeo to document the function of the device.
 
 Contents:
-webmirror_circuitpython_nrf52840_dongle_openocd_pi_tutorial.pdf
+- webmirror_circuitpython_nrf52840_dongle_openocd_pi_tutorial.pdf
+- README.md
 
 Links:
-[1] www.circuitpython.org
-[4] https://www.rototron.info/circuitpython-nrf52840-dongle-openocd-pi-tutorial/
-[2] --- vimeo link ---
-[3] nRF52840 Dongle hardware
+1. [1] www.circuitpython.org
+2. [4] https://www.rototron.info/circuitpython-nrf52840-dongle-openocd-pi-tutorial/
+3. [2] --- vimeo link ---
+4. [3] nRF52840 Dongle hardware
+5. [GitHub](http://github.com)
