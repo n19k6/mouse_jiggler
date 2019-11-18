@@ -1,9 +1,9 @@
 # mouse_jiggler
-This repository contains information about turning a nRF52840 Dongle (PCA10059) into a mouse jiggler device.
+This repository contains information about turning an nRF52840 Dongle (PCA10059) into a mouse jiggler device.
 
 A mouse jiggler is a hardware device that simulates tiny mouse movements which prevent the operation system to enter standby mode due to missing keyboard or mouse interactions.
 
-You have differen options to get a mouse jiggler device:
+You have different options to get a mouse jiggler device:
 - buy a commercial mouse jiggler device for less than 20 EUR
 - buy a circuit python board from adafruit and copy a python control script to it
 - buy a nRF52840 Dongle device, flash the boot loader, install circuit python and copy a python control script to it
@@ -13,7 +13,7 @@ This repository only contains a summary of existing information found.
 
 Step 1:
 Install UF2 bootloader onto nRF52840 Dongle by following the detailed instructions given at [2].
-You need an raspberry pi and you have to solder two pin headers temporarily.
+You need a raspberry pi and you have to solder two pin headers temporarily.
 The mentioned hex-file in available at [3].
 
 Step 2:
@@ -22,7 +22,7 @@ file boot_out.txt, e.g. 'Adafruit CircuitPython 4.0.1 on 2019-05-22; PCA10059 nR
 Download the appropriate uf2-file from [1] via click on 'Download->nRF52840 Dongle (PCA10059)->DOWNLOAD .UF2 NOW'.
 Double click the reset button and wait until usb share NRF52BOOT is available.
 Copy the downloaded file 'adafruit-circuitpython-pca10059-en_US-4.1.0.uf2' onto the usb share.
-After the the file has been copied the device reboots and appears as usb share CIRCUITPY.
+After the file has been copied the device reboots and appears as usb share CIRCUITPY.
 Check the content of the file boot_out.txt, which should show the new version of circuitpython.
 
 Step 3:
