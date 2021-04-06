@@ -39,11 +39,12 @@ Create a file main.py with the following content and copy it to the CIRCUITPY.
 ```python
 import time
 import board
+import usb_hid
 from adafruit_hid.mouse import Mouse
 
 time.sleep(10)
 
-m = Mouse()
+m = Mouse(usb_hid.devices)
 
 while True:
     m.move(2,2,0)
