@@ -4,8 +4,9 @@
 
 import time
 import usb_hid
+import math
 
-time.sleep(3)
+time.sleep(1)
 
 def find_device(devices, *, usage_page, usage):
     """Search through the provided list of devices to find the one with the matching usage_page and
@@ -33,7 +34,6 @@ class Mouse:
 
     def __init__(self, devices):
         """Create a Mouse object that will send USB mouse HID reports.
-
         Devices can be a list of devices that includes a keyboard device or a keyboard device
         itself. A device is any object that implements ``send_report()``, ``usage_page`` and
         ``usage``.
@@ -57,15 +57,11 @@ class Mouse:
 
     def press(self, buttons):
         """Press the given mouse buttons.
-
         :param buttons: a bitwise-or'd combination of ``LEFT_BUTTON``,
             ``MIDDLE_BUTTON``, and ``RIGHT_BUTTON``.
-
         Examples::
-
             # Press the left button.
             m.press(Mouse.LEFT_BUTTON)
-
             # Press the left and right buttons simultaneously.
             m.press(Mouse.LEFT_BUTTON | Mouse.RIGHT_BUTTON)
         """
@@ -74,7 +70,6 @@ class Mouse:
 
     def release(self, buttons):
         """Release the given mouse buttons.
-
         :param buttons: a bitwise-or'd combination of ``LEFT_BUTTON``,
             ``MIDDLE_BUTTON``, and ``RIGHT_BUTTON``.
         """
@@ -88,15 +83,11 @@ class Mouse:
 
     def click(self, buttons):
         """Press and release the given mouse buttons.
-
         :param buttons: a bitwise-or'd combination of ``LEFT_BUTTON``,
             ``MIDDLE_BUTTON``, and ``RIGHT_BUTTON``.
-
         Examples::
-
             # Click the left button.
             m.click(Mouse.LEFT_BUTTON)
-
             # Double-click the left button.
             m.click(Mouse.LEFT_BUTTON)
             m.click(Mouse.LEFT_BUTTON)
@@ -106,26 +97,21 @@ class Mouse:
 
     def move(self, x=0, y=0, wheel=0):
         """Move the mouse and turn the wheel as directed.
-
         :param x: Move the mouse along the x axis. Negative is to the left, positive
             is to the right.
         :param y: Move the mouse along the y axis. Negative is upwards on the display,
             positive is downwards.
         :param wheel: Rotate the wheel this amount. Negative is toward the user, positive
             is away from the user. The scrolling effect depends on the host.
-
         Examples::
-
             # Move 100 to the left. Do not move up and down. Do not roll the scroll wheel.
             m.move(-100, 0, 0)
             # Same, with keyword arguments.
             m.move(x=-100)
-
             # Move diagonally to the upper right.
             m.move(50, 20)
             # Same.
             m.move(x=50, y=-20)
-
             # Roll the mouse wheel away from the user.
             m.move(wheel=1)
         """
@@ -155,16 +141,32 @@ class Mouse:
 
 
 m = Mouse(usb_hid.devices)
-m.move(100,0,0)
-time.sleep(0.5)
-m.move(-100,0,0)
 
-while True:
+#m.move(100,0,0)
+#time.sleep(0.5)
+#m.move(0,100,0)
+#time.sleep(0.5)
+#m.move(-100,0,0)
+#time.sleep(0.5)
+#m.move(0,-100,0)
+
+while False:
     time.sleep(60)
     m.move(3,3,0)
     time.sleep(0.2)
     m.move(-3,-3,0)
     time.sleep(0.2)
 
+r = 100
 
+m.move(-int(r/2),0,0)
+
+for i in range(72*8):
+    dx = int((math.cos(math.pi*2/72*i)-math.cos(math.pi*2/72*(i+1)))*r)
+    dy = int((math.sin(math.pi*2/72*i)-math.sin(math.pi*2/72*(i+1)))*r)
+    #print(dx, dy)
+    m.move(dx, dy, 0)
+    time.sleep(0.01)
+
+m.move(int(r/2),0,0)
 
